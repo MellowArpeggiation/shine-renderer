@@ -34,6 +34,7 @@
             }
 
             this.lights.push(light);
+            light.addTo(this.$canvas);
         },
 
         clearLights: function () {
@@ -47,7 +48,7 @@
             }
 
             this.sprites.push(sprite);
-            this.$canvas.append(sprite.$element);
+            sprite.addTo(this.$canvas);
         },
 
         clearSprites: function () {
@@ -84,6 +85,10 @@
         },
 
         render: function () {
+            for (var i = 0; i < this.lights.length; i++) {
+                this.lights[i].render();
+            }
+
             for (var i = 0; i < this.sprites.length; i++) {
                 this.sprites[i].render();
             }

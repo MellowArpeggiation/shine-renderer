@@ -24,7 +24,7 @@
         init: function () {
             this.position = this.opts.position;
 
-            this.$element = $('<div class="sprite"></div>');
+            this.$element = $('<div class="sprite"></div>').css('position', 'absolute');
             this.$base = $('<img src="' + this.opts.url + '">').appendTo(this.$element);
             this.$mask = $('<img src="' + this.opts.mask + '">').appendTo(this.$element);
         },
@@ -34,6 +34,10 @@
                 transform: 'translate(' + this.position.x + 'px, ' + this.position.y + 'px)',
             });
         },
+
+        addTo: function ($root) {
+            this.$element.appendTo($root);
+        }
 
     };
 

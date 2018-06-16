@@ -7,6 +7,7 @@
             x: 0,
             y: 0,
         },
+        radius: 50, // The extinction radius of the light source
     };
 
     function Light(options) {
@@ -20,12 +21,20 @@
     Light.prototype = {
 
         init: function () {
-            
+            this.position = this.opts.position;
+            this.radius = this.opts.radius;
+            this.$element = $('<div></div>');
         },
 
         render: function () {
-
+            this.$element.css({
+                transform: 'translate(' + (this.position.x - this.radius) + 'px, ' + (this.position.y - this.radius) + 'px)',
+            })
         },
+
+        addTo: function ($root) {
+            this.$element.appendTo($root);
+        }
 
     };
 
@@ -33,7 +42,6 @@
 
     var pointDefaults = $.extend({}, defaults, {
         dropoffCurve: 1,    // The dropoff rate of the light intensity
-        radius: 20,         // The extinction radius of the light source
     });
 
     function PointLight(options) {
@@ -48,7 +56,18 @@
 
     $.extend(PointLight.prototype, {
 
+        init: function () {
+            // Call super
+            Light.prototype.init.call(this);
 
+            this.$element.css({
+                width: this.opts.radius * 2,
+                height: this.opts.radius * 2,
+                background: 'radial-gradient(closest-side, rgba(255, 255, 255, 0.5), transparent)',
+                position: 'absolute',
+                zIndex: 10,
+            });
+        },
 
     });
 
@@ -56,7 +75,6 @@
 
     var spotDefaults = $.extend({}, defaults, {
         dropoffCurve: 1,    // The dropoff rate of the light intensity
-        distance: 20,       // The distance at which all light from this source is extinct
         direction: 0,       // Angle in degrees
     });
 
@@ -72,7 +90,10 @@
 
     $.extend(SpotLight.prototype, {
 
-
+        init: function () {
+            // Call super
+            Light.prototype.init.call(this);
+        },
 
     });
 

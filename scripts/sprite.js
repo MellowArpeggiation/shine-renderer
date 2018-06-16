@@ -8,7 +8,7 @@
             y: 0,
         },
         url: '', // The image URL
-        mask: '', // THe mask texture for the lighting engine
+        mask: '', // The mask texture for the lighting engine
     };
 
     function Sprite(options) {
@@ -16,6 +16,8 @@
 
         this.init();
     }
+
+    shine.Sprite = Sprite;
 
     Sprite.prototype = {
 
@@ -34,7 +36,5 @@
         },
 
     };
-
-    shine.Sprite = Sprite;
 
 })(window, window.shine);

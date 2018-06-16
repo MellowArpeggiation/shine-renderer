@@ -28,6 +28,11 @@
         },
 
         addLight: function (light) {
+            if (!(light instanceof shine.Light)) {
+                console.warn('Not a valid light source:', light);
+                return;
+            }
+
             this.lights.push(light);
         },
 
@@ -36,12 +41,18 @@
         },
 
         addSprite: function (sprite) {
+            if (!(light instanceof shine.Sprite)) {
+                console.warn('Not a valid sprite:', sprite);
+                return;
+            }
+
             this.sprites.push(sprite);
             this.$canvas.append(sprite.$element);
         },
 
         clearSprites: function () {
             this.sprites = [];
+            this.$canvas.html('');
         },
 
         /**

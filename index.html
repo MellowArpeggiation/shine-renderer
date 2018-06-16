@@ -17,8 +17,13 @@
                 $canvas: $('.renderer-window'),
             });
 
-            var light = new shine.Light();
-            renderer.addLight(light);
+            var pLight = new shine.PointLight({
+                position: {
+                    x: 400,
+                    y: 50,
+                },
+            });
+            renderer.addLight(pLight);
 
             var sprite = new shine.Sprite({
                 url: 'images/circle.png',
@@ -32,10 +37,6 @@
             renderer.run(() => {
                 sprite.position.x += 10;
             });
-
-            // setInterval(function () {
-            //     sprite.position.x += 10;
-            // }, 16);
 
             setTimeout(function () {
                 renderer.stop();

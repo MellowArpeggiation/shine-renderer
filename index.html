@@ -4,21 +4,24 @@
         <link rel="stylesheet" href="styles/renderer.css">
     </head>
     <body>
-        <div class="canvas"></div>
+        <div class="renderer-window"></div>
+
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="scripts/renderer.js"></script>
         <script src="scripts/light.js"></script>
         <script src="scripts/sprite.js"></script>
 
         <script>
+            // Some example code, your game engine should implement these functions
             var renderer = new shine.Renderer({
-                $canvas: $('.canvas'),
+                $canvas: $('.renderer-window'),
             });
 
             var light = new shine.Light();
             renderer.addLight(light);
 
             var sprite = new shine.Sprite({
+                url: 'images/circle.png',
                 position: {
                     x: 50,
                     y: 100,
@@ -26,11 +29,13 @@
             });
             renderer.addSprite(sprite);
 
-            renderer.run();
-
-            setInterval(function () {
+            renderer.run(() => {
                 sprite.position.x += 10;
-            }, 16);
+            });
+
+            // setInterval(function () {
+            //     sprite.position.x += 10;
+            // }, 16);
 
             setTimeout(function () {
                 renderer.stop();

@@ -23,8 +23,8 @@
             this.position = this.opts.position;
 
             this.$element = $('<div class="sprite"></div>');
-            this.$base = $('<img src="' + this.opts.url + '">').appendTo(this.$container);
-            this.$mask = $('<img src="' + this.opts.mask + '">').appendTo(this.$container);
+            this.$base = $('<img src="' + this.opts.url + '">').appendTo(this.$element);
+            this.$mask = $('<img src="' + this.opts.mask + '">').appendTo(this.$element);
         },
 
         render: function () {

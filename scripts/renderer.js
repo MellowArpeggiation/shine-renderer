@@ -44,19 +44,18 @@
             this.sprites = [];
         },
 
-        run: function () {
+        /**
+         * @param {Function} callback You can attach a game loop to the renderer callback to have a synchronous model
+         */
+        run: function (callback) {
             if (this.loopHandle) {
                 console.warn('Already running loop');
                 return;
             }
 
-            this.loopHandle = requestAnimationFrame(() => {
-                this._loop();
+            this.callback = callback || (() => {});
 
-                this.loopHandle = undefined;
-
-                this.run();
-            });
+            this._loop();
         },
 
         stop: function () {
@@ -66,8 +65,11 @@
         },
 
         _loop: function () {
-            // this.opts.$canvas.append(this.opts.$canvas.html() + ' bee');
-            this.render();
+            this.loopHandle = requestAnimationFrame(() => {
+                this.callback();
+                this.render();
+                this._loop();
+            });
         },
 
         render: function () {

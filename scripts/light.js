@@ -63,7 +63,7 @@
             this.$element.css({
                 width: this.opts.radius * 2,
                 height: this.opts.radius * 2,
-                background: 'radial-gradient(closest-side, rgba(255, 255, 255, 0.5), transparent)',
+                background: 'radial-gradient(closest-side, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0))',
                 position: 'absolute',
                 zIndex: 10,
             });

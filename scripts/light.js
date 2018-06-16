@@ -42,6 +42,8 @@
         this.init();
     }
 
+    shine.PointLight = PointLight;
+
     PointLight.prototype = Object.create(Light.prototype);
 
     $.extend(PointLight.prototype, {
@@ -63,6 +65,8 @@
 
         this.init();
     }
+
+    shine.SpotLight = SpotLight;
 
     SpotLight.prototype = Object.create(Light.prototype);
 

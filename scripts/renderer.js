@@ -41,7 +41,7 @@
         },
 
         addSprite: function (sprite) {
-            if (!(light instanceof shine.Sprite)) {
+            if (!(sprite instanceof shine.Sprite)) {
                 console.warn('Not a valid sprite:', sprite);
                 return;
             }
